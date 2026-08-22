@@ -1,7 +1,280 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LERNEXT Solutions — Coming Soon</title>
+<style>
+  :root{
+    --navy: #0E1626;
+    --navy-deep: #080C15;
+    --panel: #131E33;
+    --line: #24304a;
+    --lime: #C6FF3D;
+    --lime-dim: #8fce2a;
+    --text: #EAF0FA;
+    --text-dim: #93A1BE;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html,body{
+    height:100%;
+    background:var(--navy);
+    color:var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+    overflow-x:hidden;
+  }
+
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    position:relative;
+    padding:24px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(198,255,61,0.07), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(198,255,61,0.05), transparent 45%),
+      var(--navy);
+  }
+
+  /* subtle moving grid to feel "next-gen" without being loud */
+  .grid-bg{
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.15;
+    mask-image: radial-gradient(circle at center, black 10%, transparent 70%);
+    pointer-events:none;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    max-width:640px;
+    width:100%;
+  }
+
+  /* Logo placeholder */
+  .logo-slot{
+    width:96px;
+    height:96px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:28px;
+    background:var(--panel);
+    position:relative;
+  }
+  .logo-slot::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    background: linear-gradient(135deg, transparent 45%, rgba(198,255,61,0.12) 50%, transparent 55%);
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--lime);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .eyebrow .dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--lime);
+    box-shadow:0 0 0 0 rgba(198,255,61,0.6);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(198,255,61,0.5);}
+    70%{box-shadow:0 0 0 10px rgba(198,255,61,0);}
+    100%{box-shadow:0 0 0 0 rgba(198,255,61,0);}
+  }
+
+  h1{
+    font-size: clamp(1.6rem, 4.6vw, 2.6rem);
+    line-height:1.2;
+    letter-spacing:-0.01em;
+    font-weight:800;
+    margin-bottom:18px;
+  }
+  h1 .accent{
+    color:var(--lime);
+    display:inline-block;
+    position:relative;
+  }
+
+  p.desc{
+    color:var(--text-dim);
+    font-size:1.05rem;
+    line-height:1.6;
+    max-width:480px;
+    margin-bottom:36px;
+  }
+
+  /* signature element: a "next step" arrow track */
+  .next-track{
+    width:100%;
+    max-width:420px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-bottom:40px;
+  }
+  .next-track .seg{
+    flex:1;
+    height:4px;
+    border-radius:2px;
+    background:var(--line);
+    overflow:hidden;
+    position:relative;
+  }
+  .next-track .seg span{
+    position:absolute;
+    inset:0;
+    background:var(--lime);
+    transform:translateX(-100%);
+    animation: fill 3.2s ease-in-out infinite;
+  }
+  .next-track .seg:nth-child(1) span{ animation-delay:0s; }
+  .next-track .seg:nth-child(2) span{ animation-delay:0.35s; }
+  .next-track .seg:nth-child(3) span{ animation-delay:0.7s; }
+  .next-track .seg:nth-child(4) span{ animation-delay:1.05s; }
+  @keyframes fill{
+    0%{ transform:translateX(-100%); }
+    35%{ transform:translateX(0%); }
+    85%{ transform:translateX(0%); }
+    100%{ transform:translateX(0%); opacity:0; }
+  }
+
+  form{
+    display:flex;
+    width:100%;
+    max-width:420px;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  input[type="email"]{
+    flex:1;
+    min-width:220px;
+    padding:14px 16px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:var(--text);
+    font-size:0.95rem;
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  input[type="email"]:focus{
+    border-color:var(--lime);
+  }
+  input[type="email"]::placeholder{ color:var(--text-dim); }
+
+  button{
+    padding:14px 22px;
+    border-radius:10px;
+    border:none;
+    background:var(--lime);
+    color:var(--navy-deep);
+    font-weight:700;
+    font-size:0.95rem;
+    cursor:pointer;
+    transition: transform .15s ease, background .2s ease;
+  }
+  button:hover{ background:var(--lime-dim); transform:translateY(-1px); }
+  button:focus-visible, input:focus-visible{
+    outline:2px solid var(--lime);
+    outline-offset:2px;
+  }
+
+  .status{
+    margin-top:14px;
+    font-size:0.85rem;
+    color:var(--lime);
+    min-height:1.2em;
+  }
+
+  footer{
+    position:relative;
+    z-index:2;
+    margin-top:56px;
+    color:var(--text-dim);
+    font-size:0.8rem;
+    letter-spacing:0.04em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .eyebrow .dot, .next-track .seg span{ animation:none; }
+  }
+</style>
 </head>
 <body>
-<h1> Coming Soon </h1>
+
+  <div class="grid-bg"></div>
+
+  <div class="wrap">
+    <div class="logo-slot">
+      <img src="logo.jpeg" alt="LERNXT logo" width="56" height="56" style="border-radius:12px; object-fit:cover;">
+    </div>
+
+    <div class="eyebrow"><span class="dot"></span> Launching Soon</div>
+
+    <h1>Learning Ecosystem for<br>Research, Knowledge &amp;<br><span class="accent">Next-generation Technology.</span></h1>
+
+    <p class="desc">
+      LERNXT — Learning Ecosystem for Research, Knowledge &amp; Next-generation
+      Technology. A connected platform where research, knowledge, and emerging
+      tech come together to power smarter, more accessible learning for the
+      next generation.
+    </p>
+
+    <div class="next-track">
+      <div class="seg"><span></span></div>
+      <div class="seg"><span></span></div>
+      <div class="seg"><span></span></div>
+      <div class="seg"><span></span></div>
+    </div>
+
+    <form id="notifyForm">
+      <input type="email" id="emailInput" placeholder="you@email.com" required>
+      <button type="submit">Notify Me</button>
+    </form>
+    <div class="status" id="statusMsg"></div>
+  </div>
+
+  <footer>© 2026 LERNEXT Solutions. All rights reserved.</footer>
+
+  <script>
+    const form = document.getElementById('notifyForm');
+    const status = document.getElementById('statusMsg');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      status.textContent = "Thanks! We'll email " + email + " when we launch.";
+      form.reset();
+    });
+  </script>
+
 </body>
 </html>
