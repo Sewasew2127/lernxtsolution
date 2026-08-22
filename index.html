@@ -3,24 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LERNEXT Solutions — Coming Soon</title>
+<title>LERNXT Solutions — Coming Soon</title>
 <style>
   :root{
-    --navy: #0E1626;
-    --navy-deep: #080C15;
-    --panel: #131E33;
-    --line: #24304a;
-    --lime: #C6FF3D;
-    --lime-dim: #8fce2a;
+    --bg: #0B1220;
+    --bg-deep: #060A12;
+    --panel: #121B2E;
+    --line: #22304A;
     --text: #EAF0FA;
     --text-dim: #93A1BE;
+    --cyan: #12AEDF;
+    --blue: #0B51A7;
+    --orange: #E66C29;
+    --orange-light: #F9C270;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
 
   html,body{
     height:100%;
-    background:var(--navy);
+    background:var(--bg);
     color:var(--text);
     font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
     overflow-x:hidden;
@@ -35,12 +37,12 @@
     position:relative;
     padding:24px;
     background:
-      radial-gradient(circle at 15% 20%, rgba(198,255,61,0.07), transparent 40%),
-      radial-gradient(circle at 85% 80%, rgba(198,255,61,0.05), transparent 45%),
-      var(--navy);
+      radial-gradient(circle at 15% 20%, rgba(18,174,223,0.12), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(230,108,41,0.10), transparent 45%),
+      var(--bg);
   }
 
-  /* subtle moving grid to feel "next-gen" without being loud */
+  /* subtle grid texture */
   .grid-bg{
     position:absolute;
     inset:0;
@@ -64,34 +66,36 @@
     width:100%;
   }
 
-  /* Logo placeholder */
+  /* Logo */
   .logo-slot{
-    width:96px;
-    height:96px;
-    border-radius:20px;
-    border:1px solid var(--line);
+    width:140px;
+    height:auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    margin-bottom:28px;
-    background:var(--panel);
-    position:relative;
-  }
-  .logo-slot::after{
-    content:"";
-    position:absolute;
-    inset:0;
+    margin-bottom:24px;
+    padding:14px;
     border-radius:20px;
-    background: linear-gradient(135deg, transparent 45%, rgba(198,255,61,0.12) 50%, transparent 55%);
+    background:#F7F8F3;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  }
+  .logo-slot img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:8px;
   }
 
   .eyebrow{
     display:inline-flex;
     align-items:center;
     gap:8px;
-    color:var(--lime);
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     font-size:13px;
-    font-weight:600;
+    font-weight:700;
     letter-spacing:0.16em;
     text-transform:uppercase;
     margin-bottom:18px;
@@ -100,14 +104,14 @@
     width:7px;
     height:7px;
     border-radius:50%;
-    background:var(--lime);
-    box-shadow:0 0 0 0 rgba(198,255,61,0.6);
+    background:var(--orange);
+    box-shadow:0 0 0 0 rgba(230,108,41,0.5);
     animation:pulse 2s infinite;
   }
   @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(198,255,61,0.5);}
-    70%{box-shadow:0 0 0 10px rgba(198,255,61,0);}
-    100%{box-shadow:0 0 0 0 rgba(198,255,61,0);}
+    0%{box-shadow:0 0 0 0 rgba(230,108,41,0.5);}
+    70%{box-shadow:0 0 0 10px rgba(230,108,41,0);}
+    100%{box-shadow:0 0 0 0 rgba(230,108,41,0);}
   }
 
   h1{
@@ -116,9 +120,13 @@
     letter-spacing:-0.01em;
     font-weight:800;
     margin-bottom:18px;
+    color:var(--text);
   }
   h1 .accent{
-    color:var(--lime);
+    background: linear-gradient(90deg, var(--blue), var(--orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     display:inline-block;
     position:relative;
   }
@@ -131,7 +139,7 @@
     margin-bottom:36px;
   }
 
-  /* signature element: a "next step" arrow track */
+  /* signature element: a "next step" progress track */
   .next-track{
     width:100%;
     max-width:420px;
@@ -151,7 +159,7 @@
   .next-track .seg span{
     position:absolute;
     inset:0;
-    background:var(--lime);
+    background: linear-gradient(90deg, var(--cyan), var(--orange));
     transform:translateX(-100%);
     animation: fill 3.2s ease-in-out infinite;
   }
@@ -187,31 +195,32 @@
     transition:border-color .2s ease;
   }
   input[type="email"]:focus{
-    border-color:var(--lime);
+    border-color:var(--cyan);
   }
-  input[type="email"]::placeholder{ color:var(--text-dim); }
+  input[type="email"]::placeholder{ color:var(--text-dim); opacity:0.9; }
 
   button{
     padding:14px 22px;
     border-radius:10px;
     border:none;
-    background:var(--lime);
-    color:var(--navy-deep);
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    color:#FFFFFF;
     font-weight:700;
     font-size:0.95rem;
     cursor:pointer;
-    transition: transform .15s ease, background .2s ease;
+    transition: transform .15s ease, filter .2s ease;
   }
-  button:hover{ background:var(--lime-dim); transform:translateY(-1px); }
+  button:hover{ filter:brightness(1.08); transform:translateY(-1px); }
   button:focus-visible, input:focus-visible{
-    outline:2px solid var(--lime);
+    outline:2px solid var(--orange);
     outline-offset:2px;
   }
 
   .status{
     margin-top:14px;
     font-size:0.85rem;
-    color:var(--lime);
+    color:var(--orange);
+    font-weight:600;
     min-height:1.2em;
   }
 
@@ -235,7 +244,7 @@
 
   <div class="wrap">
     <div class="logo-slot">
-      <img src="logo.jpeg" alt="LERNXT logo" width="56" height="56" style="border-radius:12px; object-fit:cover;">
+      <img src="logo.jpeg" alt="LERNXT Solutions logo">
     </div>
 
     <div class="eyebrow"><span class="dot"></span> Launching Soon</div>
@@ -243,7 +252,8 @@
     <h1>Learning Ecosystem for<br>Research, Knowledge &amp;<br><span class="accent">Next-generation Technology.</span></h1>
 
     <p class="desc">
-      A connected platform where research, knowledge, and emerging
+      LERNXT — Learning Ecosystem for Research, Knowledge &amp; Next-generation
+      Technology. A connected platform where research, knowledge, and emerging
       tech come together to power smarter, more accessible learning for the
       next generation.
     </p>
@@ -262,7 +272,7 @@
     <div class="status" id="statusMsg"></div>
   </div>
 
-  <footer>© 2026 LERNEXT Solutions. All rights reserved.</footer>
+  <footer>© 2026 LERNXT Solutions. All rights reserved.</footer>
 
   <script>
     const form = document.getElementById('notifyForm');
